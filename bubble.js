@@ -29,19 +29,29 @@
             .data(datapoints)
             .enter().append("circle")
             .attr("class", "name")
+            .attr("stroke-width", "2")
             .attr("r", function (d) {
                 return radiusScale(d.popularity)
             })
             .attr("fill", "lightblue")
 
-        var texts = svg.selectAll(null)
+        var texts = svg.selectAll(".name")
             .data(datapoints)
             .enter()
             .append("text")
-            .text(d => d.name)
             .attr("text-anchor", "middle")
+            .attr("class", "nodetext")
+            .text(d => d.name)
+            .attr("y", "250")
             .attr("color", "black")
             .attr("font-size", 15)
+            .on("mouseover", function (d) {
+                d3.select(this).attr("r", radiusScale(d.popularity + 10)).style("fill", "#2f4cff");
+                d3.select(this).style("cursor", "pointer");
+            })
+            .on("mouseout", function (d) {
+                d3.select(this).attr("r", radiusScale(d.popularity)).style("fill", "lightblue");
+            })
 
         simulation.nodes(datapoints).on('tick', ticked)
 
