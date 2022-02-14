@@ -43,7 +43,7 @@
             })
             .attr("fill", "lightblue")
 
-        var texts = svg.selectAll(null)
+        var texts = circles.selectAll(null)
             .data(datapoints)
             .enter()
             .append("text")
@@ -59,19 +59,22 @@
             circles.attr("cx", function (d) {
                 console.log("circle- " + d.x);
                 return d.x
-            })
-                .attr("cy", function (d) {
-                    console.log("circle- " + d.y);
-                    return d.y
-                });
+            });
+
             texts.attr("cx", function (d) {
                 console.log("text- " + d.x);
-                return d.x * 10;
-            })
-                .attr("cy", function (d) {
-                    console.log("text- " + d.y)
-                    return d.y * 10;
-                });
+                return d.x;
+            });
+
+            circles.attr("cy", function (d) {
+                console.log("circle- " + d.y);
+                return d.y
+            });
+
+            text.attr("cy", function (d) {
+                console.log("text- " + d.y)
+                return d.y;
+            });
         }
 
     }
