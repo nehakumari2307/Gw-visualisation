@@ -75,22 +75,22 @@
         simulation.nodes(datapoints).on('tick', ticked)
 
         function ticked() {
-            circles.attr("cx", function (d) {
+            bubbles.attr("cx", function (d) {
                 console.log("circle- " + d.x);
                 return d.x
             });
 
-            texts.attr("cx", function (d) {
+            labels.attr("cx", function (d) {
                 console.log("text- " + d.x);
                 return d.x;
             });
 
-            circles.attr("cy", function (d) {
+            bubbles.attr("cy", function (d) {
                 console.log("circle- " + d.y);
                 return d.y
             });
 
-            texts.attr("cy", function (d) {
+            labels.attr("cy", function (d) {
                 console.log("text- " + d.y)
                 return d.y;
             });
