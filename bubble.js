@@ -15,7 +15,7 @@
         .force("x", d3.forceX(width / 2).strength(0.05))
         .force("y", d3.forceY(height / 2).strength(0.05))
         .force("collide", d3.forceCollide(function (d) {
-            return radiusScale(d.area_hectares) + 1;
+            return radiusScale(d.age) + 1;
         }))
 
 
@@ -30,7 +30,7 @@
             .enter().append("circle")
             .attr("class", "name")
             .attr("r", function (d) {
-                return radiusScale(d.area_hectares)
+                return radiusScale(d.age)
             })
             .attr("fill", "lightblue")
 
