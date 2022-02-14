@@ -16,7 +16,6 @@
 
     d3.csv("test.csv", function (error, data) {
 
-        data = JSON.parse(data)
         var nodes = pack.nodes(data);
         var node = canvas.selectAll(".node")
             .data(nodes)
