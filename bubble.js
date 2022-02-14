@@ -8,14 +8,14 @@
         .append("g")
         .attr("transform", "translate(0,0)")
 
-    var radiusScale = d3.scaleSqrt().domain([1, 50]).range([10, 50])
+    var radiusScale = d3.scaleSqrt().domain([1, 500]).range([10, 50])
 
 
     var simulation = d3.forceSimulation()
         .force("x", d3.forceX(width / 2).strength(0.05))
         .force("y", d3.forceY(height / 2).strength(0.05))
         .force("collide", d3.forceCollide(function (d) {
-            return radiusScale(d.age) + 1;
+            return radiusScale(d.popularity) + 1;
         }))
 
 
@@ -30,7 +30,7 @@
             .enter().append("circle")
             .attr("class", "name")
             .attr("r", function (d) {
-                return radiusScale(d.age)
+                return radiusScale(d.popularity)
             })
             .attr("fill", "lightblue")
 
