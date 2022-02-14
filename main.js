@@ -129,4 +129,4 @@ function display(data) {
 }
 
 // load data
-d3.csv('test.csv').then(display);
+d3.csv('test.csv');
