@@ -13,41 +13,45 @@
         .attr("height", diameter)
         .attr("class", "bubble");
 
+    var radiusScale = d3.scaleSqrt().domain([1, 500]).range([10, 50])
+
+
     d3.csv("test.csv", function (error, data) {
 
-        //convert numerical values from strings to numbers
-        data = data.map(function (d) { return d.popularity; });
-
-        //bubbles needs very specific format, convert data to this.
-        var nodes = bubble.nodes({ children: data }).filter(function (d) {
-            return !d.children;
-        });;
-
-        //setup the chart
-        var bubbles = svg.append("g")
-            .attr("transform", "translate(0,0)")
-            .selectAll(".bubble")
+        data = JSON.parse(data)
+        var nodes = pack.nodes(data);
+        var node = canvas.selectAll(".node")
             .data(nodes)
-            .enter();
+            .enter()
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
-        //create the bubbles
-        bubbles.append("circle")
-            .attr("r", function (d) { return d.r; })
-            .attr("cx", function (d) { return d.x; })
-            .attr("cy", function (d) { return d.y; })
-            .style("fill", function (d) { return color(d.popularity); });
+        node.append("circle")
+            .attr("r", function (d) { return radiusScale(d.popularity) + 1; })
+            .attr("fill", "lightblue")
+            .attr("opacity", 0.25)
+            .attr("stroke-width", "2");
 
-        //format the text for each bubble
-        bubbles.append("text")
-            .attr("x", function (d) { return d.x; })
-            .attr("y", function (d) { return d.y + 5; })
+
+        node.append("text")
+            .text(function (d) { return d.name; })
             .attr("text-anchor", "middle")
-            .text(function (d) { return d["name"]; })
-            .style({
-                "fill": "white",
-                "font-family": "Verdana, san-serif",
-                "font-size": "12px"
+            .attr("class", "nodetext")
+            .attr("data-classname", function (d) { return d.name; })
+            .attr("style", function (d) { return "font-size:" + d.r / 4; })
+            .on("click", function (d) { window.open("https://twitter.com/hashtag/" + d.name.trim() + "\?src=hash"); })
+            .on("mouseover", function (d) {
+                d3.select(this).attr("r", 10).style("fill", "#2f4cff");
+                d3.select(this).style("cursor", "pointer");
+
+            })
+            .on("mouseout", function (d) {
+                d3.select(this).attr("r", 5.5).style("fill", "#000");
             });
+
+
+
     })
 
 })();
