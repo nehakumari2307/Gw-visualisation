@@ -13,8 +13,6 @@
         .attr("height", diameter)
         .attr("class", "bubble");
 
-    // var radiusScale = d3.scaleSqrt().domain([1, 500]).range([10, 50])
-
 
     d3.csv("test.csv", function (error, data) {
 
