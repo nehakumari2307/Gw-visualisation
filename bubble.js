@@ -6,7 +6,9 @@
         .attr("height", height)
         .attr("width", width)
         .append("g")
+        .data(nodetext)
         .attr("transform", "translate(0,0)")
+        .attr("class", "bubble")
 
     var radiusScale = d3.scaleSqrt().domain([1, 500]).range([10, 50])
 
@@ -42,7 +44,6 @@
             .attr("class", "nodetext")
             .text(d => d.name)
             .attr("text-anchor", "middle")
-            .attr("y", "250")
             .attr("color", "black")
             .attr("font-size", 15)
             .on("mouseover", function (d) {
