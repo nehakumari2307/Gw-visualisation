@@ -14,6 +14,8 @@
         .attr("class", "bubble")
 
     var radiusScale = d3.scaleSqrt().domain([1, 500]).range([10, 50])
+    var xRange = d3.scale.linear().range([1, 500]).domain([10, 50]);
+    var yRange = d3.scale.linear().range([1, 500]).domain([10, 50]);
 
 
     var simulation = d3.forceSimulation()
@@ -48,10 +50,6 @@
             .attr("class", "nodetext")
             .text(d => d.name)
             .attr("text-anchor", "middle")
-            .attr("x", d3.forceX(width / 2).strength(0.05))
-            .attr("r", function (d) {
-                return radiusScale(d.popularity)
-            })
             .attr("color", "black")
             .attr("font-size", 15)
 
@@ -59,16 +57,20 @@
 
         function ticked() {
             circles.attr("cx", function (d) {
+                console.log("circle- " + d.x);
                 return d.x
             })
                 .attr("cy", function (d) {
+                    console.log("circle- " + d.y);
                     return d.y
                 });
             texts.attr("cx", function (d) {
-                return d.x
+                console.log("text- " + d.x);
+                return d.x * 10;
             })
                 .attr("cy", function (d) {
-                    return d.y
+                    console.log("text- " + d.y)
+                    return d.y * 10;
                 });
         }
 
