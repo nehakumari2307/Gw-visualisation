@@ -64,9 +64,7 @@
             .classed('bubble', true)
             .attr("stroke", "black")
             .attr("stroke-width", "2")
-            .attr("r", function (d) {
-                return radiusScale(d.popularity)
-            })
+            .attr("r", d => d.radius)
             .attr("fill", "lightblue")
 
         labels = elements
