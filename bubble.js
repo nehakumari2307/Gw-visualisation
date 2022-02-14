@@ -72,7 +72,7 @@
         //     .attr("color", "black")
         //     .attr("font-size", 15)
 
-        simulation.nodes(datapoints).on('tick', ticked)
+        simulation.nodes(elements).on('tick', ticked)
 
         function ticked() {
             bubbles.attr("cx", function (d) {
