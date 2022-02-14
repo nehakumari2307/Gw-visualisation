@@ -92,7 +92,7 @@
                 return d.x
             });
 
-            labels.attr("cx", function (d) {
+            labels.attr("x", function (d) {
                 console.log("text- " + d.x);
                 return d.x;
             });
@@ -102,7 +102,7 @@
                 return d.y
             });
 
-            labels.attr("cy", function (d) {
+            labels.attr("y", function (d) {
                 console.log("text- " + d.y)
                 return d.y;
             });
