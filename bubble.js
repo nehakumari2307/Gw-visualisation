@@ -49,13 +49,6 @@
             .attr("text-anchor", "middle")
             .attr("color", "black")
             .attr("font-size", 15)
-            .on("mouseover", function (d) {
-                d3.select(this).attr("r", radiusScale(d.popularity + 10)).style("fill", "#2f4cff");
-                d3.select(this).style("cursor", "pointer");
-            })
-            .on("mouseout", function (d) {
-                d3.select(this).attr("r", radiusScale(d.popularity)).style("fill", "lightblue");
-            })
 
         simulation.nodes(datapoints).on('tick', ticked)
 
