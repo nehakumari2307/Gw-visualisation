@@ -2,11 +2,14 @@
     var width = 500;
     height = 500;
 
+    // var bubble = d3.layout.pack().sort(null)
+    //                 .size([width, height]);
+
+
     var svg = d3.select("#chart").append("svg")
         .attr("height", height)
         .attr("width", width)
         .append("g")
-        .data(nodetext)
         .attr("transform", "translate(0,0)")
         .attr("class", "bubble")
 
