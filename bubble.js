@@ -14,8 +14,6 @@
         .attr("class", "bubble")
 
     var radiusScale = d3.scaleSqrt().domain([1, 500]).range([10, 50])
-    var xRange = d3.scale.linear().range([1, 500]).domain([10, 50]);
-    var yRange = d3.scale.linear().range([1, 500]).domain([10, 50]);
 
 
     var simulation = d3.forceSimulation()
@@ -43,7 +41,7 @@
             })
             .attr("fill", "lightblue")
 
-        var texts = circles.selectAll(null)
+        var texts = svg.selectAll(null)
             .data(datapoints)
             .enter()
             .append("text")
