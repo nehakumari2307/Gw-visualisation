@@ -2,7 +2,6 @@
     var width = 500;
     height = 500;
 
-    let svg = null;
     let bubbles = null;
     let labels = null;
     //let nodes = [];
