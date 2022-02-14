@@ -19,7 +19,9 @@
         data = data.map(function (d) { return d.popularity; });
 
         //bubbles needs very specific format, convert data to this.
-        var nodes = bubble.nodes({ children: data });
+        var nodes = bubble.nodes({ children: data }).filter(function (d) {
+            return !d.children;
+        });;
 
         //setup the chart
         var bubbles = svg.append("g")
