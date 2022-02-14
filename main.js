@@ -130,9 +130,6 @@ function bubbleChart() {
         myBubbleChart('#chart', data);
     }
     // load data
-    d3.queue()
-        .defer(d3.csv, "test.csv")
-        .await(ready)
-        .then(display)
+    d3.csv("test.csv").then(display)
 
 })();
