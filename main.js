@@ -129,4 +129,7 @@ function display(data) {
 }
 
 // load data
-d3.csv('test.csv');
+d3.queue()
+    .defer(d3.csv, "test.csv")
+    .await(ready)
+    .then(display)
