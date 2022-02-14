@@ -13,8 +13,20 @@
         .attr("transform", "translate(0,0)")
         .attr("class", "bubble")
 
-    var radiusScale = d3.scaleSqrt().domain([1, 500]).range([10, 50])
+    function createNodes(rawData) {
 
+        var radiusScale = d3.scaleSqrt().domain([1, 500]).range([10, 50])
+        const myNodes = rawData.map(d => ({
+            ...d,
+            name: d.name,
+            radius: radiusScale(+d.popularity),
+            size: +d.popularity,
+            x: Math.random() * 900,
+            y: Math.random() * 800
+        }))
+
+        return myNodes;
+    }
 
     var simulation = d3.forceSimulation()
         .force("x", d3.forceX(width / 2).strength(0.05))
@@ -30,6 +42,8 @@
 
     function ready(error, datapoints) {
 
+        nodes = createNodes(datapoints);
+
         // var circles = svg.selectAll(".name")
         //     .data(datapoints, d=> d.name)
         //     .enter().append("circle")
@@ -42,7 +56,7 @@
         //     .attr("fill", "lightblue")
 
         const elements = svg.selectAll(".name")
-            .data(datapoints, d => d.name)
+            .data(nodes, d => d.name)
             .enter()
             .append("g")
 
@@ -72,7 +86,7 @@
         //     .attr("color", "black")
         //     .attr("font-size", 15)
 
-        simulation.nodes(elements).on('tick', ticked)
+        simulation.nodes(nodes).on('tick', ticked)
 
         function ticked() {
             bubbles.attr("cx", function (d) {
