@@ -119,17 +119,20 @@ function bubbleChart() {
     return chart;
 }
 
-// new bubble chart instance
-let myBubbleChart = bubbleChart();
+(function () {
 
-// function called once promise is resolved and data is loaded from csv
-// calls bubble chart function to display inside #vis div
-function display(data) {
-    myBubbleChart('#chart', data);
-}
+    // new bubble chart instance
+    let myBubbleChart = bubbleChart();
 
-// load data
-d3.queue()
-    .defer(d3.csv, "test.csv")
-    .await(ready)
-    .then(display)
+    // function called once promise is resolved and data is loaded from csv
+    // calls bubble chart function to display inside #vis div
+    function display(data) {
+        myBubbleChart('#chart', data);
+    }
+    // load data
+    d3.queue()
+        .defer(d3.csv, "test.csv")
+        .await(ready)
+        .then(display)
+
+})();
