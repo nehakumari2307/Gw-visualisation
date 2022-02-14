@@ -34,19 +34,23 @@
             .data(datapoints)
             .enter().append("circle")
             .attr("class", "name")
+            .attr("stroke", "black")
             .attr("stroke-width", "2")
             .attr("r", function (d) {
                 return radiusScale(d.popularity)
             })
             .attr("fill", "lightblue")
 
-        var texts = svg.selectAll(".nodetext")
+        var texts = svg.selectAll(null)
             .data(datapoints)
             .enter()
             .append("text")
             .attr("class", "nodetext")
             .text(d => d.name)
             .attr("text-anchor", "middle")
+            .attr("r", function (d) {
+                return radiusScale(d.popularity)
+            })
             .attr("color", "black")
             .attr("font-size", 15)
 
