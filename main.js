@@ -28,7 +28,7 @@
             .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
 
         node.append("circle")
-            .attr("r", function (d) { return radiusScale(d.popularity) + 1; })
+            .attr("r", function (d) { return (d.popularity) + 1; })
             .attr("fill", "lightblue")
             .attr("opacity", 0.25)
             .attr("stroke-width", "2");
