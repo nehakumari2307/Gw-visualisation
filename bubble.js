@@ -2,9 +2,10 @@
     var width = 500;
     height = 500;
 
-    // var bubble = d3.layout.pack().sort(null)
-    //                 .size([width, height]);
-
+    let svg = null;
+    let bubbles = null;
+    let labels = null;
+    //let nodes = [];
 
     var svg = d3.select("#chart").append("svg")
         .attr("height", height)
@@ -30,10 +31,24 @@
 
     function ready(error, datapoints) {
 
-        var circles = svg.selectAll(".name")
-            .data(datapoints)
-            .enter().append("circle")
-            .attr("class", "name")
+        // var circles = svg.selectAll(".name")
+        //     .data(datapoints, d=> d.name)
+        //     .enter().append("circle")
+        //     .attr("class", "name")
+        //     .attr("stroke", "black")
+        //     .attr("stroke-width", "2")
+        //     .attr("r", function (d) {
+        //         return radiusScale(d.popularity)
+        //     })
+        //     .attr("fill", "lightblue")
+
+        const elements = svg.selectAll(".name")
+            .data(datapoints, d => d.name)
+            .enter()
+            .append("g")
+
+        bubbles = elements.append("circle")
+            .classed('bubble', true)
             .attr("stroke", "black")
             .attr("stroke-width", "2")
             .attr("r", function (d) {
@@ -41,15 +56,22 @@
             })
             .attr("fill", "lightblue")
 
-        var texts = svg.selectAll(null)
-            .data(datapoints)
-            .enter()
+        labels = elements
             .append("text")
-            .attr("class", "nodetext")
+            .attr("dy", ".3em")
+            .style('text-anchor', 'middle')
+            .style('font-size', 10)
             .text(d => d.name)
-            .attr("text-anchor", "middle")
-            .attr("color", "black")
-            .attr("font-size", 15)
+
+        // var texts = svg.selectAll(null)
+        //     .data(datapoints)
+        //     .enter()
+        //     .append("text")
+        //     .attr("class", "nodetext")
+        //     .text(d => d.name)
+        //     .attr("text-anchor", "middle")
+        //     .attr("color", "black")
+        //     .attr("font-size", 15)
 
         simulation.nodes(datapoints).on('tick', ticked)
 
