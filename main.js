@@ -124,12 +124,16 @@ function bubbleChart() {
     // new bubble chart instance
     let myBubbleChart = bubbleChart();
 
+    d3.queue()
+        .defer(d3.csv, "test.csv")
+        .await(ready)
+
     // function called once promise is resolved and data is loaded from csv
     // calls bubble chart function to display inside #vis div
     function display(data) {
         myBubbleChart('#chart', data);
     }
     // load data
-    d3.csv("test.csv").then(display)
+    // d3.csv("test.csv").then(display)
 
 })();
