@@ -71,7 +71,7 @@
                 return d.y
             });
 
-            text.attr("cy", function (d) {
+            texts.attr("cy", function (d) {
                 console.log("text- " + d.y)
                 return d.y;
             });
