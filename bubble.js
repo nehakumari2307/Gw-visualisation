@@ -48,6 +48,7 @@
             .attr("class", "nodetext")
             .text(d => d.name)
             .attr("text-anchor", "middle")
+            .attr("x", d3.forceX(width / 2).strength(0.05))
             .attr("r", function (d) {
                 return radiusScale(d.popularity)
             })
