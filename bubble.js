@@ -39,6 +39,7 @@
             .enter()
             .append("text")
             .text(d => d.name)
+            .attr("text-anchor", "middle")
             .attr("color", "black")
             .attr("font-size", 15)
 
