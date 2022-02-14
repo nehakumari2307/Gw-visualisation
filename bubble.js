@@ -34,6 +34,14 @@
             })
             .attr("fill", "lightblue")
 
+        var texts = svg.selectAll(null)
+            .data(datapoints)
+            .enter()
+            .append("text")
+            .text(d => d.name)
+            .attr("color", "black")
+            .attr("font-size", 15)
+
         simulation.nodes(datapoints).on('tick', ticked)
 
         function ticked() {
@@ -42,7 +50,13 @@
             })
                 .attr("cy", function (d) {
                     return d.y
-                })
+                });
+            texts.attr("cx", function (d) {
+                return d.x
+            })
+                .attr("cy", function (d) {
+                    return d.y
+                });
         }
 
     }
