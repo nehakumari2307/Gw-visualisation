@@ -21,7 +21,7 @@ import { nodes, links } from './data';
     const centerY = height / 2;
 
     const simulation = d3.forceSimulation(nodes)
-        .force("charge", d3.forceManyBody()) //
+        .force("charge", d3.forceManyBody().strength(-50000)) //-ve strength tells that each node shud be pulled away from each other 
         .force("links", d3.forceLink(links))
         .force("center", d3.forceCenter(centerX, centerY)); //pulls nodes towards center
 
@@ -30,7 +30,16 @@ import { nodes, links } from './data';
         .data(nodes)
         .enter()
         .append('circle')
-        .attr('r', 10);
+        .attr('fill', 'lightblue')
+        .attr('r', node => node.size);
+
+    const text = svg.selectAll('text')
+        .data(nodes)
+        .enter()
+        .append('text')
+        .text(node => node.id) // this will pick up the text from data.js
+        .attr('text-anchor', 'middle')
+        .attr('alignment-baseline', 'middle')
 
     const lines = svg.selectAll('line')
         .data(links)
@@ -39,8 +48,11 @@ import { nodes, links } from './data';
         .attr('stroke', 'black');
 
     simulation.on('tick', () => {
-        circles.attr('cx', node => node.x) //forces define x & y on each node so its automatically poopoulated
+        circles.attr('cx', node => node.x) //forces define x & y on each node so its automatically popoulated
             .attr('cy', node => node.y)
+
+        text.attr('x', node => node.x) //forces define x & y on each node so its automatically popoulated
+            .attr('y', node => node.y)
 
         lines.attr('x1', link => link.source.x) //takes the link, gets the source which is a index, find the index for the node and fetch the x value
             .attr('y1', link => link.source.y)
