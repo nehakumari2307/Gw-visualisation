@@ -1,15 +1,17 @@
+import { nodes, links } from './data';
+
 (function () {
 
-    const nodes = [
-        { "id": "Alice" },
-        { "id": "Bob" },
-        { "id": "Carol" },
-    ];
+    // const nodes = [
+    //     { "id": "Alice" },
+    //     { "id": "Bob" },
+    //     { "id": "Carol" },
+    // ];
 
-    const links = [
-        { "source": 0, "target": 1 },  //Alice -> Bob
-        { "source": 1, "target": 2 },  //Bob -> Carol
-    ];
+    // const links = [
+    //     { "source": 0, "target": 1 },  //Alice -> Bob
+    //     { "source": 1, "target": 2 },  //Bob -> Carol
+    // ];
 
     const svg = d3.select('#container');
 
@@ -44,7 +46,6 @@
             .attr('y1', link => link.source.y)
             .attr('x2', link => link.target.x)
             .attr('y2', link => link.target.y)
-        console.log('tick');
     });
 
 })();

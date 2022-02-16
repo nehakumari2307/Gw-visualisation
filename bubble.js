@@ -88,22 +88,18 @@
 
         function ticked() {
             bubbles.attr("cx", function (d) {
-                console.log("circle- " + d.x);
                 return d.x
             });
 
             labels.attr("x", function (d) {
-                console.log("text- " + d.x);
                 return d.x;
             });
 
             bubbles.attr("cy", function (d) {
-                console.log("circle- " + d.y);
                 return d.y
             });
 
             labels.attr("y", function (d) {
-                console.log("text- " + d.y)
                 return d.y;
             });
         }
