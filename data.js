@@ -12,6 +12,12 @@
             1.	7 articles
         iii.	Threatre
             1.	9 articles
+    c.  Ambitious
+        i. Estate
+            1. 12 articles
+        ii. Economies
+        iii. Law
+        iv. Freelancer
  */
 
 // const nodes = [
@@ -66,6 +72,19 @@ addSubNode(socialImpactNode); //this will create a new subnode
 connectSubNodes(artWebNode,socialImpactNode);
 
 //add children to second subNode
-assembleChildNode(socialImpactNode, "Art Alliance", 5); //Art web -> Community
-assembleChildNode(socialImpactNode, "Local Color", 7); //Art Web -> Silicon Valley
-assembleChildNode(socialImpactNode, "Threatre", 9); //Art Web -> Silicon Valley
+assembleChildNode(socialImpactNode, "Art Alliance", 5); //Social Impact -> Art Alliance
+assembleChildNode(socialImpactNode, "Local Color", 7); //Social Impact -> Local Color
+assembleChildNode(socialImpactNode, "Threatre", 9); //Social Impact -> Threatre
+
+const ambitousNode = { "id": "Ambitious"}; //parent node for 2nd screen, 
+addSubNode(ambitousNode); //this will create a new subnode
+
+//connect two subNodes together
+connectSubNodes(artWebNode, ambitousNode);
+connectSubNodes(socialImpactNode, ambitousNode);
+
+//add children to second subNode
+assembleChildNode(socialImpactNode, "Estate", 12); //Ambitious -> Estate
+assembleChildNode(socialImpactNode, "Economies", 0); //Ambitious -> Economies
+assembleChildNode(socialImpactNode, "Law", 0); //Ambitious -> Law
+assembleChildNode(socialImpactNode, "Freelancer", 0); //Ambitious -> Freelancer
