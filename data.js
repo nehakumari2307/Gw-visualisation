@@ -50,7 +50,7 @@ const assembleChildNode = (subNode, id, articles) => {
 
 //function to connect subnodes with each other
 const connectSubNodes=(source, target)=> {
-    links.push(source,target,distance: 100)
+    links.push({ source, target, distance: 100 });
 }
 
 const artWebNode = { "id": "Art Web"}; //parent node for 2nd screen, 
