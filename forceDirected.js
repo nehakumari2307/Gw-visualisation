@@ -29,8 +29,8 @@ import { nodes, links } from './data.js';
     const draginteraction = d3.drag().on('drag', (event, node) => {
         node.fx = event.x; //fx& fy is used to fix new position of the nodes when dragged
         node.fy = event.y;
-        stimulation.alpha(1); 
-        stimulation.restart();
+        simulation.alpha(1); 
+        simulation.restart();
     });
 
     const lines = svg.selectAll('line')
