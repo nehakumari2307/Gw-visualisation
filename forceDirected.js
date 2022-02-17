@@ -19,33 +19,42 @@ import { nodes, links } from './data.js';
     const height = +svg.attr('height');
     const centerX = width / 2;
     const centerY = height / 2;
+    
 
     const simulation = d3.forceSimulation(nodes)
-        .force("charge", d3.forceManyBody().strength(-50)) //-ve strength tells that each node shud be pulled away from each other 
+        .force("charge", d3.forceManyBody().strength(-20)) //-ve strength tells that each node shud be pulled away from each other 
         .force("links", d3.forceLink(links).distance((link) => link.distance)) //distance will determine the structure of the nodes from center
         .force("center", d3.forceCenter(centerX, centerY)); //pulls nodes towards center
+    
+    const draginteraction = d3.drag().on('drag', (event, node) => {
+        node.fx = event.x; //fx& fy is used to fix new position of the nodes when dragged
+        node.fy = event.y;
+        stimulation.alpha(1); 
+        stimulation.restart();
+    });
 
-
+    const lines = svg.selectAll('line')
+        .data(links)
+        .enter()
+        .append('line')
+        .attr('stroke', link => link.color || 'grey');
+    
     const circles = svg.selectAll('circle')
         .data(nodes)
         .enter()
         .append('circle')
         .attr('fill', (node) => node.color || 'grey')
-        .attr('r', node => node.size);
-
+        .attr('r', node => node.size)
+        .call(draginteraction);
+    
     const text = svg.selectAll('text')
         .data(nodes)
         .enter()
         .append('text')
         .text(node => node.id) // this will pick up the text from data.js
         .attr('text-anchor', 'middle')
+        .style('pointer-events', 'none')
         .attr('alignment-baseline', 'middle')
-
-    const lines = svg.selectAll('line')
-        .data(links)
-        .enter()
-        .append('line')
-        .attr('stroke', 'black');
 
     simulation.on('tick', () => {
         circles.attr('cx', node => node.x) //forces define x & y on each node so its automatically popoulated
