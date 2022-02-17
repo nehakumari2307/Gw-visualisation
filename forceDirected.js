@@ -22,7 +22,7 @@ import { nodes, links } from './data.js';
 
     const simulation = d3.forceSimulation(nodes)
         .force("charge", d3.forceManyBody().strength(-200)) //-ve strength tells that each node shud be pulled away from each other 
-        .force("links", d3.forceLink(links).distance((link) => link.distance) //distance will determine the structure of the nodes from center
+        .force("links", d3.forceLink(links).distance((link) => link.distance)) //distance will determine the structure of the nodes from center
         .force("center", d3.forceCenter(centerX, centerY)); //pulls nodes towards center
 
 
