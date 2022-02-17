@@ -42,7 +42,7 @@ const addSubNode = (node) => {
     nodes.push(node);
 };
 
-const addChildNode = (subNode, childNode, size = 50, distance = 90 ) => {  //default size for child node
+const addChildNode = (subNode, childNode, size = 50, distance = 200 ) => {  //default size for child node
     childNode.size = size; //const value which can be changed
     childNode.color = subNode.color;
     nodes.push(childNode);
@@ -54,7 +54,7 @@ const assembleChildNode = (subNode, id, articles) => {
     addChildNode(subNode, childNode); //pass the subNode and the childNode //Art Web -> Community
 
     for(let i=0; i<articles; i++) {
-        addChildNode(childNode, { "id" : ""}, 20, 30) //pass the childnode abd the leave node //community -> 20 articles with no label, for leave node pass size
+        addChildNode(childNode, { "id" : ""}, 20, 100) //pass the childnode abd the leave node //community -> 20 articles with no label, for leave node pass size
     }
 };
 
