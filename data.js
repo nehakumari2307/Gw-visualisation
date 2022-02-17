@@ -49,7 +49,7 @@ const assembleChildNode = (subNode, id, articles) => {
     const childNode ={ id };
     addChildNode(subNode, childNode); //pass the subNode and the childNode //Art Web -> Community
 
-    for(let i=0; i<=articles; i++) {
+    for(let i=0; i<articles; i++) {
         addChildNode(childNode, { "id" : ""}, 10, 50) //pass the childnode abd the leave node //community -> 20 articles with no label, for leave node pass size
     }
 };
@@ -84,7 +84,7 @@ connectSubNodes(artWebNode, ambitousNode);
 connectSubNodes(socialImpactNode, ambitousNode);
 
 //add children to second subNode
-assembleChildNode(socialImpactNode, "Estate", 12); //Ambitious -> Estate
-assembleChildNode(socialImpactNode, "Economies", 0); //Ambitious -> Economies
-assembleChildNode(socialImpactNode, "Law", 0); //Ambitious -> Law
-assembleChildNode(socialImpactNode, "Freelancer", 0); //Ambitious -> Freelancer
+assembleChildNode(ambitousNode, "Estate", 12); //Ambitious -> Estate
+assembleChildNode(ambitousNode, "Economies", 0); //Ambitious -> Economies
+assembleChildNode(ambitousNode, "Law", 0); //Ambitious -> Law
+assembleChildNode(ambitousNode, "Freelancer", 0); //Ambitious -> Freelancer
