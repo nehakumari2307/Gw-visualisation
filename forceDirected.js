@@ -1,6 +1,6 @@
-(function () {
+import { nodes, links } from './data.js';
 
-    import { nodes, links } from './data.js';
+(function () {
 
     // const nodes = [
     //     { "id": "Alice" },
