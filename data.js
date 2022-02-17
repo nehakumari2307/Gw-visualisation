@@ -47,7 +47,7 @@ const assembleChildNode = (id) => {
     addChildNode(subNode, childNode); //pass the subNode and the childNode //Art Web -> Community
 
     for(let i=0; i<=20; i++) {
-        addChildNode(childNode, { "id" : ""}, 10, 0) //pass the childnode abd the leave node //community -> 20 articles with no label, for leave node pass size
+        addChildNode(childNode, { "id" : ""}, 10, 50) //pass the childnode abd the leave node //community -> 20 articles with no label, for leave node pass size
     }
 };
 
